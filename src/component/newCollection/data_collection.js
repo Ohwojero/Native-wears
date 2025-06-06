@@ -1,0 +1,73 @@
+const new_collections = [
+    {
+      id: 1,
+      name: "Classic Denim Jacket",
+      image: "/image/n-1 (1).jpg",
+      new_price: 59.99,
+      old_price: 79.99,
+    },
+    {
+      id: 2,
+      name: "White Sneakers",
+      image: "/image/n-1 (2).jpg",
+      new_price: 49.99,
+      old_price: 69.99,
+    },
+    {
+      id: 3,
+      name: "Black Hoodie",
+      image: "/image/n-1 (3).jpg",
+      new_price: 39.99,
+      old_price: 54.99,
+    },
+    {
+      id: 4,
+      name: "Slim Fit Chinos",
+      image: "/image/n-1 (4).jpg",
+      new_price: 44.99,
+      old_price: 64.99,
+    },
+    {
+      id: 5,
+      name: "Slim Fit Chinos",
+      image: "/image/n-1 (5).jpg",
+      new_price: 44.99,
+      old_price: 64.99,
+    },
+    {
+      id: 6,
+      name: "Slim Fit Chinos",
+      image: "/image/n-1 (6).jpg",
+      new_price: 44.99,
+      old_price: 64.99,
+    },
+    {
+      id: 7,
+      name: "Slim Fit Chinos",
+      image: "/image/n-1 (7).jpg",
+      new_price: 44.99,
+      old_price: 64.99,
+    },
+    {
+      id: 8,
+      name: "Slim Fit Chinos",
+      image: "/image/n-1 (8).jpg",
+      new_price: 44.99,
+      old_price: 64.99,
+    },
+    {
+      id: 9,
+      name: "Slim Fit Chinos",
+      image: "/image/n-1 (9).jpg",
+      new_price: 44.99,
+      old_price: 64.99,
+    },
+    {
+      id: 10,
+      name: "Slim Fit Chinos",
+      image: "/image/n-1 (10).jpg",
+      new_price: 44.99,
+      old_price: 64.99,
+    },
+  ];
+  export default new_collections
