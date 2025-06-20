@@ -22,14 +22,17 @@ const Navbar = () => {
           <li onClick={() => {setmenu("bags")}}> <Link to='bags' style={{textDecoration:'none'}}  onClick={() => setIsNavShowing(prev => !prev)}>Bags</Link>{menu === "bags" ? <hr /> : <></>}</li>
         </ul>
         <div className="nav-login-cart">
-         <Link to='login' style={{textDecoration:'none'}}><button className="nav-btn">Login</button></Link> 
+          {localStorage.getItem('auth-token')
+          ?<button onClick={()=>{localStorage.removeItem('auth-token')
+          ;window.location.replace('/')}} className="nav-btn">Logout</button>
+          : <Link to='login' style={{textDecoration:'none'}}><button className="nav-btn">Login</button></Link>}
+        
          <Link to='cart' style={{textDecoration:'none'}}>  <BsCart3 className="cart-icon" /></Link> 
           <div className="nav-cart-count">{ getTotalCartItem()}</div>
         </div>
         <button className='nav_toggle-btn' onClick={() => setIsNavShowing(prev => !prev)}>
-                
-                {isNavShowing ? <IoMdClose className='menu' /> : <CiMenuBurger className='menu' />}
-            </button>
+          {isNavShowing ? <IoMdClose className='menu' /> : <CiMenuBurger className='menu' />}
+          </button>
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ import Product from './pages/Product';
 import Cart from './pages/Cart';
 import LoginSignup from './pages/LoginSignup'
 import Footer from './component/footer/Footer';
+import PlaceOrder from './component/placeOrder/PlaceOrder';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         </Route>
         <Route path='/cart' element={<Cart/>}/>
         <Route path='/login' element={<LoginSignup/>}/>
+        <Route path='/order' element={<PlaceOrder/>}/>
       </Routes>
       <Footer />
       </BrowserRouter>

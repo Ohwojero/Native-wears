@@ -4,7 +4,7 @@ import { ShopContext } from '../context/ShopContext'
 import { IoIosArrowDropdown } from "react-icons/io";
 import ItemDetails from '../component/item/ItemDetails'
 const ShopCategory = (props) => {
-  const {all_products} = useContext(ShopContext)
+  const {all_product} = useContext(ShopContext)
   return (
     <div className='shop-categgory'>
       <h1>Slider Caro</h1>
@@ -18,7 +18,7 @@ const ShopCategory = (props) => {
         </div>
           <div className='shopcategory-products'>
               {
-                all_products.map((item, index)=>{
+                all_product.map((item, index)=>{
                  if (props.category ===item.category){
                   return <ItemDetails key={index} id={item.id} name={item.name} image={item.image} old_price={item.old_price} new_price={item.new_price} />
                  } else{

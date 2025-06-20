@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import { ShopContext } from "../../context/ShopContext";
+import {useNavigate} from 'react-router-dom'
 import "./CartItem.css";
 import { RxCross2 } from "react-icons/rx";
 const CartItem = () => {
-  const { getTotalCartAmount,all_products, cartItems, removCart } = useContext(ShopContext);
+  const navigate = useNavigate()
+  const { getTotalCartAmount,all_product, cartItems, removCart } = useContext(ShopContext);
   return (
     <div className="cart-item">
       <div className="cart-item-format-main">
@@ -16,7 +18,7 @@ const CartItem = () => {
       </div>
       <hr />
 
-      {all_products.map((e) => {
+      {all_product.map((e) => {
         if (cartItems[e.id] > 0) {
           return (
             <div key={e.id}>
@@ -50,20 +52,19 @@ const CartItem = () => {
               </div>
               <hr />
               <div className="sub-total">
-                <p>Hipping fee</p>
-                <p>Free</p>
+                <p>Deleivery Fee</p>
+                <p>${getTotalCartAmount()===0?0:2}</p>
               </div>
 
               <hr />
 
               <div className="sub-total">
                 <h3>Total</h3>
-                <h3>${getTotalCartAmount()}</h3>
+                <h3>${getTotalCartAmount()===0?0:getTotalCartAmount()+2}</h3>
               </div>
           </div>
-          
       </div>
-      <button className="submit-btn">PROCEED TO CHECKOUT</button>
+      <button className="submit-btn" onClick={()=>navigate('/order')}>PROCEED TO CHECKOUT</button>
     </div>
   );
 };
