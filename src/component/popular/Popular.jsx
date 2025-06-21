@@ -13,6 +13,7 @@ const Popular = () => {
     fetch(`${BACKEND_BASE_URL}/popular`)
     .then((response)=>response.json())
     .then((data)=>setPopulars(data))
+    
   },[])
 
   return (
