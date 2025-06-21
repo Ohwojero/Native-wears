@@ -3,11 +3,12 @@ import './css/ShopCategory.css'
 import { ShopContext } from '../context/ShopContext'
 import { IoIosArrowDropdown } from "react-icons/io";
 import ItemDetails from '../component/item/ItemDetails'
+import Carousel from '../component/carousel/Carousel';
 const ShopCategory = (props) => {
   const {all_product} = useContext(ShopContext)
   return (
     <div className='shop-categgory'>
-      <h1>Slider Caro</h1>
+          <Carousel />
 
         <div className='shopcategory-indexSort'>
             <p><span className='spandetails'>Showing 1-12</span> out of 30 Products</p>
