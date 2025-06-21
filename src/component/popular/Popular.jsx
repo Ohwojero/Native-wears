@@ -3,11 +3,14 @@ import React, { useEffect, useState } from 'react'
 import './popular.css'
 import ItemDetails from '../item/ItemDetails'
 
+// Configurable backend base URL
+const BACKEND_BASE_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:4000';
+
 const Popular = () => {
 
   const [populars,setPopulars] = useState([]);
   useEffect(()=>{
-    fetch('http://localhost:4000/popular')
+    fetch(`${BACKEND_BASE_URL}/popular`)
     .then((response)=>response.json())
     .then((data)=>setPopulars(data))
   },[])

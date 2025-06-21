@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react'
 import './newCollection.css'
 
 import ItemDetails from '../item/ItemDetails'
+
+// Configurable backend base URL
+const BACKEND_BASE_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:4000';
+
 const NewCollections = () => {
   const [collection, setCollection] = useState([])
 
   useEffect(()=>{
-    fetch('http://localhost:4000/newCollection')
+    fetch(`${BACKEND_BASE_URL}/newCollection`)
     .then((response)=>response.json())
     .then((data)=>setCollection(data));
   },[])
