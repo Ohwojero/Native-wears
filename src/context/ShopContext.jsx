@@ -1,5 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 
+const BASE_URL = process.env.REACT_APP_BACKEND_URL || "http://192.168.1.100:4000"; // Replace with your system IP address
+
 export const ShopContext = createContext(null);
 const getDefaultCart = () => {
   let cart = {};
@@ -12,8 +14,13 @@ const ShopContextProvider = (props) => {
   const [all_product, setAllProducts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:4000/allproducts")
-      .then((response) => response.json())
+    fetch(`${BASE_URL}/allproducts`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then((data) => setAllProducts(data))
       .catch((error) => {
         console.error("Error fetching products:", error);
@@ -21,27 +28,34 @@ const ShopContextProvider = (props) => {
 
       //To save data in the cart if the users logout in will still remains 
       if(localStorage.getItem('auth-token')){
-        fetch('http://localhost:4000/getcart',{
+        fetch(`${BASE_URL}/getcart`,{
           method:'POST',
           headers:{
             Accept:'application/json',
             'auth-token':`${localStorage.getItem('auth-token')}`,
-            'Contenr-Type':'application/json'
+            'Content-Type':'application/json'
           },
-          body:""
-        }).then((response)=>response.json())
-        .then((data)=>setCartItems(data));
+          body:JSON.stringify({}) // send empty object instead of empty string
+        }).then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((data)=>setCartItems(data))
+        .catch((error) => {
+          console.error("Error fetching cart:", error);
+        });
       }
       
   }, []);
-
 
 
   const [cartItems, setCartItems] = useState(getDefaultCart());
   const addCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     if(localStorage.getItem('auth-token')){
-      fetch('http://localhost:4000/addtocart',{
+      fetch(`${BASE_URL}/addtocart`,{
         method:"POST",
         headers:{
           Accept:'application/json',
@@ -50,19 +64,26 @@ const ShopContextProvider = (props) => {
         },
         body:JSON.stringify({"itemId":itemId}),
       })
-      .then((response)=>response.json())
-      .then((data)=>console.log(data));
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data)=>console.log(data))
+      .catch((error) => {
+        console.error("Error adding to cart:", error);
+      });
 
-      
+
     }
   };
-
 
 
   const removCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
     if(localStorage.getItem('auth-token')){
-      fetch('http://localhost:4000/removefromcart',{
+      fetch(`${BASE_URL}/removefromcart`,{
         method:"POST",
         headers:{
           Accept:'application/json',
@@ -71,8 +92,16 @@ const ShopContextProvider = (props) => {
         },
         body:JSON.stringify({"itemId":itemId}),
       })
-      .then((response)=>response.json())
-      .then((data)=>console.log(data));
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data)=>console.log(data))
+      .catch((error) => {
+        console.error("Error removing from cart:", error);
+      });
     }
   };
 

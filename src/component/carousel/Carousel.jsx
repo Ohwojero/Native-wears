@@ -67,7 +67,11 @@ const Carousel= () => {
                   >
                     {data.description}
                   </p>
-                  <div data-aos="fade-up" data-aos-duration="500" data-aos-delay="300">
+                  
+                  <div 
+                     data-aos="fade-up" 
+                     data-aos-duration="500" 
+                     data-aos-delay="300">
                     <button  className="hero-button">
                       Order Now
                     </button>
